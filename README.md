@@ -7,7 +7,7 @@ If your project has multiple steps or stages (like tutorials or progressive buil
 ```
 lib/
 └── src/
-    └── 3_mini_project/
+    └── mini_project/
         └── another_project/
 ```
 
