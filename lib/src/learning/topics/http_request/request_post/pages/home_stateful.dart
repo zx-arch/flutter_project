@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/src/learning/topics/http_request/request_post/models/http_stateful.dart';
+import '../models/http_stateful.dart';
 
 class HomeStateful extends StatefulWidget {
   @override
