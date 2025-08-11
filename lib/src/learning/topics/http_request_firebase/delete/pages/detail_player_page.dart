@@ -11,72 +11,51 @@ class DetailPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final players = Provider.of<Players>(context, listen: false);
     final playerId = ModalRoute.of(context)?.settings.arguments as String;
-    final selectPLayer = players.selectById(playerId);
+    final selectPlayer = players.selectById(playerId);
+
     final TextEditingController imageController =
-        TextEditingController(text: selectPLayer.imageUrl);
+        TextEditingController(text: selectPlayer.imageUrl);
     final TextEditingController nameController =
-        TextEditingController(text: selectPLayer.name);
+        TextEditingController(text: selectPlayer.name);
     final TextEditingController positionController =
-        TextEditingController(text: selectPLayer.position);
+        TextEditingController(text: selectPlayer.position);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("DETAIL PLAYER"),
+        title: const Text("DETAIL PLAYER"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Form(
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(imageController.text),
-                    ),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(
+                    imageController.text,
                   ),
                 ),
-              ),
-              TextFormField(
-                autocorrect: false,
-                autofocus: true,
-                decoration: InputDecoration(labelText: "Nama"),
-                textInputAction: TextInputAction.next,
-                controller: nameController,
-              ),
-              TextFormField(
-                autocorrect: false,
-                decoration: InputDecoration(labelText: "Posisi"),
-                textInputAction: TextInputAction.next,
-                controller: positionController,
-              ),
-              TextFormField(
-                autocorrect: false,
-                decoration: InputDecoration(labelText: "Image URL"),
-                textInputAction: TextInputAction.done,
-                controller: imageController,
-                onEditingComplete: () {
-                  players.editPlayer(
-                    playerId,
-                    nameController.text,
-                    positionController.text,
-                    imageController.text,
-                    context,
-                  );
-                  Navigator.pop(context);
-                },
-              ),
-              SizedBox(height: 25),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.centerRight,
-                child: OutlinedButton(
-                  onPressed: () {
+                const SizedBox(height: 25),
+                TextFormField(
+                  autocorrect: false,
+                  autofocus: true,
+                  decoration: const InputDecoration(labelText: "Nama"),
+                  textInputAction: TextInputAction.next,
+                  controller: nameController,
+                ),
+                TextFormField(
+                  autocorrect: false,
+                  decoration: const InputDecoration(labelText: "Posisi"),
+                  textInputAction: TextInputAction.next,
+                  controller: positionController,
+                ),
+                TextFormField(
+                  autocorrect: false,
+                  decoration: const InputDecoration(labelText: "Image URL"),
+                  textInputAction: TextInputAction.done,
+                  controller: imageController,
+                  onEditingComplete: () {
                     players.editPlayer(
                       playerId,
                       nameController.text,
@@ -86,16 +65,32 @@ class DetailPlayer extends StatelessWidget {
                     );
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    "Edit",
-                    style: TextStyle(
-                      fontSize: 18,
+                ),
+                const SizedBox(height: 25),
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.centerRight,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      players.editPlayer(
+                        playerId,
+                        nameController.text,
+                        positionController.text,
+                        imageController.text,
+                        context,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Edit",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),

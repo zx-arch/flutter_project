@@ -28,18 +28,10 @@ class DetailPlayer extends StatelessWidget {
           child: Form(
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(imageController.text),
-                    ),
-                  ),
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(
+                  imageController.text,
                 ),
               ),
               TextFormField(
