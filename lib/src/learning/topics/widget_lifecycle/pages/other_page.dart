@@ -15,8 +15,15 @@ class OtherPage extends StatelessWidget {
       body: Center(
         child: OutlinedButton(
           onPressed: () {
-            Navigator.pushNamed(context, CounterPage.routeName);
-          }, 
+            final arg = ModalRoute.of(context)?.settings.arguments;
+            final counterValue = (arg is int) ? arg : 0;
+
+            Navigator.pushReplacementNamed(
+              context,
+              CounterPage.routeName,
+              arguments: counterValue,
+            );
+          },
           child: Text('Go to Counter Page')
         ),
       ),
