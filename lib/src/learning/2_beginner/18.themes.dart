@@ -46,10 +46,10 @@ ThemeData buildAppTheme() {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: Colors.blueGrey.shade100,
       indicatorColor: Colors.amber.shade200,
-      labelTextStyle: MaterialStateProperty.all(
+      labelTextStyle: WidgetStateProperty.all(
         const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
       ),
-      iconTheme: MaterialStateProperty.all(
+      iconTheme: WidgetStateProperty.all(
         const IconThemeData(color: Colors.black87),
       ),
     ),
